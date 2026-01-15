@@ -1,9 +1,10 @@
-const express = require("express");
+import express from "express";
+import userRoutes from "./routes/users.routes.js";
 
 const app = express();
 app.use(express.json());
-
-const userRoutes = require("./routes/users.routes");
 app.use("/api/users", userRoutes);
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("Serveur lancé sur http://localhost:3000");
+});

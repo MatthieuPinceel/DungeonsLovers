@@ -1,7 +1,7 @@
-const db = require("../config/db");
+import db from "../config/db.js";
 
 // Renvoie tous les utilisateurs de la table users.
-exports.getAllUsers = (req, res) => {
+export const getAllUsers = (req, res) => {
   db.query("SELECT * FROM users", (err, results) => {
     if (err) return res.status(500).json(err);
     res.json(results);
@@ -9,7 +9,7 @@ exports.getAllUsers = (req, res) => {
 };
 
 // Renvoie l'utilisateur correspondant à l'ID de la table users .
-exports.getUser = (req, res) => {
+export const getUser = (req, res) => {
   const id = req.params.id;
   db.query("SELECT * FROM users WHERE id = ?", [id], (err, results) => {
     if (err) return res.status(500).json(err);
@@ -18,7 +18,7 @@ exports.getUser = (req, res) => {
 };
 
 // Créé un utilisateur dans la table users avec les informations fournies.
-exports.createUser = (req, res) => {
+export const createUser = (req, res) => {
   const { LastName, FirstName } = req.body;
   db.query(
     "INSERT INTO users (UserId, LastName, FirstName) VALUES (0, ?, ?)",
@@ -27,13 +27,13 @@ exports.createUser = (req, res) => {
       if (err) 
         return res.status(500).json(err);
     
-      res.json({ message: `Utilisateur ${LastName} ${FirstName} créé(e).`});
+      res.send({ message: 'Utilisateur' +  LastName + FirstName + 'créé(e).'});
     }
   );
 };
 
 // Modifie l'utilisateur correspondant à l'ID dans la table users
-exports.updateUser = (req, res) => {
+export const updateUser = (req, res) => {
   const id = req.params.id;
   const { LastName, FirstName } = req.body;
   db.query(
@@ -43,13 +43,13 @@ exports.updateUser = (req, res) => {
       if (err) 
         return res.status(500).json(err);
       
-      res.json({ `Utilisateur ${LastName} ${FirstName} modifié(e).`});
+      res.json({ message: 'Utilisateur' +  LastName + FirstName + 'modifié(e).'});
     }
   );
 };
 
 // Vérifie l'existence de l'utilisateur lié à l'ID, et le supprime s'il existe.
-exports.deleteUser = (req, res) => {
+export const deleteUser = (req, res) => {
   const id = req.params.id;
 
   db.query("DELETE FROM users WHERE UserId = ?", [id], (err, result) => {
