@@ -5,8 +5,8 @@
       <img
         class="background"
         src="D:\Dev\Der\R6\maintenance\DungeonsLovers\src\img\background.jpg"
-        height="100%"
-        width="100%"
+        height="200"
+        width="400"
       />
       <tr>
         <td>
