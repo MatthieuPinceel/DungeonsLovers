@@ -8,17 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
-const count = ref(0);
+const count = ref(0)
 
 function compter() {
-  count.value++;
+  count.value++
 }
 </script>
-
-<style scoped>
-.home {
-  padding: 20px;
-}
-</style>

@@ -1,7 +1,4 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header>
@@ -10,12 +7,25 @@ import TheWelcome from './components/TheWelcome.vue'
       <router-link to="/"> Accueil </router-link>
       <router-link to="/users"> Utilisateurs </router-link>
     </nav>
+  </header>
+  <body>
+    Bienvenue sur Dungeons & Lovers !
     <router-view />
+  </body>
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
+  background-color: red;
+  text-align: center;
+}
+
+em {
+  font-style: normal;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.25rem;
 }
 
 .logo {
@@ -26,7 +36,7 @@ header {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
+    place-items: top;
     padding-right: calc(var(--section-gap) / 2);
   }
 
