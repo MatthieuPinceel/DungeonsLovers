@@ -1,16 +1,25 @@
 <template>
-  <h1>Accueil</h1>
-  <p>Bienvenue sur mon site</p>
-  <button @click="compter">Clique ici</button>
-  <p>Compteur : {{ count }}</p>
+  <div>
+    <h1>Utilisateurs</h1>
+    <ul>
+      <li v-for="user in users" :key="user.UserId">{{ user.LastName }} - {{ user.FirstName }}</li>
+    </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import type { User } from '../types/User'
 
-const count = ref(0)
+const users = ref<User[]>([])
 
-function compter() {
-  count.value++
-}
+onMounted(async () => {
+  try {
+    const res = await axios.get<User[]>('http://localhost:3000/api/users/getUsers')
+    users.value = res.data
+  } catch (err) {
+    console.error('Erreur lors de la récupération des utilisateurs :', err)
+  }
+})
 </script>

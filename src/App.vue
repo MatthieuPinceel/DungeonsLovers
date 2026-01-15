@@ -14,7 +14,7 @@
       <router-link to="/"> Accueil </router-link>
       <router-link to="/login"> login </router-link>
       <router-link to="/users"> Utilisateurs </router-link>
-      <router-link to="/about"> Héros </router-link>
+      <router-link to="/heros"> Héros </router-link>
     </nav>
   </header>
   <body>
