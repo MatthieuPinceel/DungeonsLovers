@@ -3,7 +3,7 @@
     <h1>Utilisateurs</h1>
     <ul>
       <li v-for="user in users" :key="user.UserId">
-        {{ user.LastName }} - {{ user.FirstName }}
+        {{ user.LastName }} - {{ user.FirstName }} - {{ user.UserName }}
       </li>
     </ul>
   </div>

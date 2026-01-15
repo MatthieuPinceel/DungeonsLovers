@@ -19,15 +19,15 @@ export const getUser = (req, res) => {
 
 // Créé un utilisateur dans la table users avec les informations fournies.
 export const createUser = (req, res) => {
-  const { LastName, FirstName } = req.body;
+  const { LastName, FirstName, UserName } = req.body;
   db.query(
-    "INSERT INTO users (UserId, LastName, FirstName) VALUES (0, ?, ?)",
-    [LastName, FirstName],
+    "INSERT INTO users (UserId, LastName, FirstName, UserName) VALUES (0, ?, ?, ?)",
+    [LastName, FirstName, UserName],
     (err, result) => {
       if (err) 
         return res.status(500).json(err);
     
-      res.send({ message: 'Utilisateur' +  LastName + FirstName + 'créé(e).'});
+      res.send({ message: 'Utilisateur' + LastName + FirstName + UserName + ' créé(e).'});
     }
   );
 };
@@ -35,15 +35,15 @@ export const createUser = (req, res) => {
 // Modifie l'utilisateur correspondant à l'ID dans la table users
 export const updateUser = (req, res) => {
   const id = req.params.id;
-  const { LastName, FirstName } = req.body;
+  const { LastName, FirstName, UserName } = req.body;
   db.query(
-    "UPDATE users SET LastName = ?, FirstName = ? WHERE UserId = ?",
-    [LastName, FirstName, UserId],
+    "UPDATE users SET LastName = ?, FirstName = ?, UserName = ? WHERE UserId = ?",
+    [LastName, FirstName, UserName, UserId],
     (err, result) => {
       if (err) 
         return res.status(500).json(err);
       
-      res.json({ message: 'Utilisateur' +  LastName + FirstName + 'modifié(e).'});
+      res.json({ message: 'Utilisateur' +  LastName + FirstName + UserName + ' modifié(e).'});
     }
   );
 };
