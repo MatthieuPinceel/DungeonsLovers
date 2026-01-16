@@ -14,10 +14,12 @@ import router from './router'
     <animated-text text="Dungeons Lovers" />
     <nav>
       <router-link to="/"> Home </router-link>
-      <router-link to="/register"> Register </router-link>
-      <router-link to="/login"> Login </router-link>
       <router-link to="/users"> Users </router-link>
-      <router-link to="/heros"> Heroes </router-link>
+      <router-link to="/heroes"> Heroes </router-link>
+    </nav>
+    <nav class="LoRe">
+      <router-link to="/login"> Login </router-link>
+      <router-link to="/register"> Register </router-link>
     </nav>
   </header>
   <body>
@@ -78,5 +80,10 @@ nav a {
   100% {
     transform: rotateY(360deg);
   }
+}
+
+.LoRe {
+  position: absolute;
+  right: 10px;
 }
 </style>

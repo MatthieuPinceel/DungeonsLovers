@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h1>Héros</h1>
+    <h1>Heroes</h1>
+    <h2>List of your heroes :</h2>
+
     <ul>
       <li v-for="hero in heroes" :key="hero.HeroesId">{{ hero.Name }}</li>
+      <img :src="hero.ImageUrl" :alt="hero.Name" v-if="hero.ImageUrl" />
     </ul>
   </div>
 </template>
@@ -23,3 +26,5 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped></style>
