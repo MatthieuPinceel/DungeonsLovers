@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Heroes</h1>
-    <h2>List of your heroes :</h2>
+    <h2>List of heroes :</h2>
 
     <ul v-if="heroes.length > 0">
       <li v-for="hero in heroes" :key="hero.HeroId">
@@ -23,13 +23,13 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-import type { Heroes } from '../types/Heroes'
+import type { Hero } from '../types/Hero'
 
-const heroes = ref<Heroes[]>([])
+const heroes = ref<Hero[]>([])
 
 onMounted(async () => {
   try {
-    const res = await axios.get<Heroes[]>('http://localhost:3000/heroes/getHeroes')
+    const res = await axios.get<Hero[]>('http://localhost:3000/heroes/getHeroes')
     heroes.value = res.data
   } catch (err) {
     console.error('Erreur lors de la récupération des héros :', err)

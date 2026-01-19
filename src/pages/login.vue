@@ -16,4 +16,23 @@
 </template>
 
 <script setup lang="ts"></script>
-<style scoped></style>
+<style scoped>
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  line-height: 2.5;
+}
+
+label {
+  text-align: right;
+}
+</style>
