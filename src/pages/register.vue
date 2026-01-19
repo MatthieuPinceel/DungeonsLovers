@@ -20,7 +20,7 @@
 
       <div>
         <label for="password">Password : </label>
-        <input type="text" id="password" v-model="password" />
+        <input type="text" id="password" v-model="Password" />
       </div>
 
       <button type="submit">Register</button>
@@ -34,7 +34,7 @@
 
   const FirstName = ref('')
   const LastName = ref('')
-  const password = ref('')
+  const Password = ref('')
   const Username = ref('')
 
   const submitRegister = async () => {
@@ -42,7 +42,7 @@
       const res = await axios.post('http://localhost:3000/authentification/register', {
         FirstName: FirstName.value,
         LastName: LastName.value,
-        password: password.value,
+        Password: Password.value,
         Username: Username.value
       })
     

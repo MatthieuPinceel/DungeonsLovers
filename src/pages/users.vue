@@ -19,7 +19,7 @@ const users = ref<User[]>([])
 onMounted(async () => {
   try {
     const token = localStorage.getItem('token')
-    const res = await axios.get<User[]>('http://localhost:3000/api/users/getUsers', {
+    const res = await axios.get<User[]>('http://localhost:3000/users/getUsers', {
       headers: {
         Authorization: "Bearer " + token
       }

@@ -5,7 +5,7 @@ import { createUserInDb } from '../services/users.service.js'
 const JWT_SECRET = "tonSecretSuperSecret" // tu peux mettre ça dans .env
 
 export const loginUser = (req, res) => {
-  const { Username, password } = req.body
+  const { Username, Password } = req.body
 
   db.query(
     "SELECT * FROM users WHERE Username = ?", [Username], 
@@ -19,7 +19,7 @@ export const loginUser = (req, res) => {
       const user = result[0]
 
       // Vérification du mot de passe
-          if ((password === user.password) === false) {
+          if ((Password === user.Password) === false) {
             return res.status(404).json({ message: "Mot de passe incorrect" })
           }
 
@@ -33,7 +33,7 @@ export const loginUser = (req, res) => {
 // Si un utilisateur avec le même pseudonyme existe déjà, la création d'utilisateur est annulée.
 export const registerUser = (req, res) => {
   console.log("BODY REÇU :", req.body)
-  const { LastName, FirstName, password, Username } = req.body;
+  const { LastName, FirstName, Password, Username } = req.body;
 
   db.query(
     "SELECT * FROM users WHERE Username = ?", [Username], 
@@ -46,7 +46,7 @@ export const registerUser = (req, res) => {
       }
 
       createUserInDb(
-        { LastName, FirstName, password, Username }, 
+        { LastName, FirstName, Password, Username }, 
         (err, result) => {
           if (err) 
             return res.status(500).json(err)
