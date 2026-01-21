@@ -4,20 +4,14 @@
     <table>
       <tbody>
         <tr>
+          <h1>Bienvenue sur Dungeons Lovers !</h1>
           <td>
-            <h1>Bienvenue sur Dungeons Lovers !</h1>
-
             <div class="wrapper">
               <p>
                 Plongez dans un univers fantastique où l'aventure et la camaraderie vous attendent.
               </p>
 
-              <img
-                class="background"
-                src="../img/Leper_combat.gif"
-                height="212"
-                width="297"
-              />
+              <img class="background" src="../img/Leper_combat.gif" height="212" width="297" />
             </div>
           </td>
         </tr>
@@ -25,7 +19,6 @@
     </table>
   </div>
 </template>
-
 
 <script setup lang="ts"></script>
 <style scoped>

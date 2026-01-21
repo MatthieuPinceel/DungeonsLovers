@@ -11,7 +11,6 @@ import router from './router'
       height="120"
       width="200"
     />
-    <animated-text text="Dungeons Lovers" />
     <nav>
       <router-link to="/"> Home </router-link>
       <router-link to="/users"> Users </router-link>
@@ -31,6 +30,8 @@ import router from './router'
 header {
   background-color: red;
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 nav a {
@@ -52,25 +53,9 @@ nav a {
 
   .logo {
     margin: 0 2rem 0 0;
-    font-size: 5rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow:
-      1px 1px 0px #e63946,
-      2px 2px 0px #f77f00,
-      3px 3px 0px #fcbf49,
-      4px 4px 0px #a8dadc,
-      5px 5px 0px #457b9d;
     transform: rotateY(0deg);
     transform-style: preserve-3d;
     animation: spin-3d 4s infinite linear;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 }
 @keyframes spin-3d {

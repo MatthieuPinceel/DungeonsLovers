@@ -32,7 +32,7 @@ const submitLogin = async () => {
   try {
     const res = await axios.post('http://localhost:3000/authentification/login', {
       Username: Username.value,
-      Password: Password.value
+      Password: Password.value,
     })
 
     const token = res.data.token
