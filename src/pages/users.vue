@@ -2,7 +2,7 @@
   <div>
     <h1>Img</h1>
     <div class="img-zoom-blur-container">
-      <img ref="imgRef" src="@/img/Hwm_combat.gif" alt="Blurred Image" />
+      <img ref="imgRef" src="/img/HeroesGif/Hwm_combat.gif?url" alt="Blurred Image" />
     </div>
     Remaining Try : {{ n }}
     <div>
