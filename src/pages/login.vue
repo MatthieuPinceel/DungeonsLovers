@@ -20,31 +20,22 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import axios from 'axios'
+import { useAuthStore } from '@/services/UserAuthStore'
 
-const router = useRouter()
+const authStore = useAuthStore()
 
 const Username = ref('')
 const Password = ref('')
 
 const submitLogin = async () => {
   try {
-    const res = await axios.post('http://localhost:3000/authentification/login', {
-      Username: Username.value,
-      Password: Password.value
-    })
-
-    const token = res.data.token
-    localStorage.setItem('token', token)
-
-    console.log('Connexion réussie')
-    router.push('/home')
+    await authStore.login(Username.value, Password.value)
   } catch (err) {
     console.error('Erreur lors de la connexion :', err)
   }
 }
 </script>
+
 
 <style scoped>
 h1 {

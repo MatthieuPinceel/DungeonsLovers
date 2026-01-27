@@ -2,8 +2,9 @@ import db from '../config/db.js'
 import jwt from 'jsonwebtoken'
 import { createUserInDb } from '../services/users.service.js'
 
-const JWT_SECRET = "tonSecretSuperSecret" // tu peux mettre ça dans .env
+const JWT_SECRET = process.env.JWT_SECRET;
 
+// Logins a user if it exists and if the password is correct.
 export const loginUser = (req, res) => {
   const { Username, Password } = req.body
 
@@ -14,39 +15,40 @@ export const loginUser = (req, res) => {
         return res.status(500).json(err)
 
       if (result.length === 0) 
-        return res.status(404).json({ message: "Utilisateur non trouvé" })
+        return res.status(404).json({ message: "Could not find " + Username + " user." })
 
       const user = result[0]
 
-      // Vérification du mot de passe
-          if ((Password === user.Password) === false) {
-            return res.status(401).json({ message: "Mot de passe incorrect" })
-          }
+      // Password verification.
+      const isValid = bcrypt.compareSync(Password, user.Password)
+      if (!isValid)
+        return res.status(401).json({ message : "Invalid password"})
 
       // Création d’un token JWT
       const token = jwt.sign({ UserId: user.UserId, Username: user.Username }, JWT_SECRET, { expiresIn: '1h' })
 
       res.json({ token })
-  })
+    }
+  )
 }
 
-// Si un utilisateur avec le même pseudonyme existe déjà, la création d'utilisateur est annulée.
+// Registers a user. If the username is already taken, cancels the registration
 export const registerUser = (req, res) => {
-  console.log("BODY REÇU :", req.body)
   const { LastName, FirstName, Password, Username } = req.body;
-
   db.query(
     "SELECT * FROM users WHERE Username = ?", [Username], 
     (err, result) => {
       if (err)
         return res.status(500).json(err);
 
-      if (result.length !== 0) {
-        return res.status(400).json({ message: "Utilisateur avec le même pseudonyme existe déjà" })
-      }
+      if (result.length !== 0)
+        return res.status(400).json({ message: "This username has already been taken : " + Username })
+
+      // Hashes the password with a salt of 10 
+      const hashedPassword = bcrypt.hashSync(Password, 10);
 
       createUserInDb(
-        { LastName, FirstName, Password, Username }, 
+        { LastName, FirstName, Password : hashedPassword, Username }, 
         (err, result) => {
           if (err) 
             return res.status(500).json(err)
@@ -60,18 +62,21 @@ export const registerUser = (req, res) => {
   )
 }
 
+// Verifies if the given token is a correct one.
 export const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
 
   if (!token)
-    return res.status(401).json({ message: "Token manquant" })
+    return res.status(401).json({ message: "Missing Token" })
 
-  jwt.verify(token, JWT_SECRET, (err, user) => {
-    if (err)
-      return res.status(403).json({ message: "Token invalide" })
+  jwt.verify(
+    token, JWT_SECRET, (err, user) => {
+      if (err)
+        return res.status(403).json({ message: "Invalid Token" })
 
-    req.user = user
-    next()
-  })
+      req.user = user
+      next()
+    }
+  )
 }

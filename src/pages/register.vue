@@ -29,37 +29,21 @@
 </template>
 
 <script setup lang="ts">
-  import { useRouter } from 'vue-router'
-  import { ref } from 'vue'
-  import axios from 'axios'
+import { ref } from 'vue'
+import { useAuthStore } from '@/services/UserAuthStore'
 
-  const router = useRouter()
+const authStore = useAuthStore()
 
-  const FirstName = ref('')
-  const LastName = ref('')
-  const Password = ref('')
-  const Username = ref('')
+const FirstName = ref('')
+const LastName = ref('')
+const Username = ref('')
+const Password = ref('')
 
-  const submitRegister = async () => {
-    try {
-      const res = await axios.post('http://localhost:3000/authentification/register', {
-        FirstName: FirstName.value,
-        LastName: LastName.value,
-        Password: Password.value,
-        Username: Username.value
-      })
-
-      console.log(res.data)
-    
-    const token = res.data.token
-    localStorage.setItem('token', token)
-
-    console.log("Inscription terminée, token stocké !")
-    router.push('/')
-    }
-    catch(err) {
-      console.error("Erreur lors de l'inscription : " + err)
+const submitRegister = async () => {
+  try {
+    await authStore.register(FirstName.value, LastName.value, Username.value, Password.value)
+  } catch (err) {
+    console.error("Erreur lors de l'inscription :", err)
   }
 }
 </script>
-<style scoped></style>

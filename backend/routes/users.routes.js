@@ -4,19 +4,19 @@ import { authenticateToken } from "../controllers/auth.controller.js"
 
 const router = express.Router();
 
-// Retourne tous les utilisateurs dans la base de données.
+// Returns every user from the users table.
 router.get("/getUsers", authenticateToken, getAllUsers);
 
-// Retourne l'utilisateur correspondant à l'ID.
+// Returns the user corresponding to the ID.
 router.get("/getUser/:id", authenticateToken, getUser);
 
-// Créer un nouvel user dans la base de données.
+// Creates a new user in the users table (if given username not taken).
 router.post("/createUser", createUser);
 
-// Modifie l'utilisateur correspondant à l'ID.
+// Update the user corresponding to the ID.
 router.put("/editUser/:id", authenticateToken, updateUser);
 
-// Supprime l'utilisateur correspondant à l'ID.
+// Deletes the user corresponding to the ID.
 router.delete("/delUser/:id", deleteUser);
 
 export default router;
