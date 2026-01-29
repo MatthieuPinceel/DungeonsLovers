@@ -4,19 +4,17 @@
     <div class="img-zoom-blur-container">
       <img ref="imgRef" src="/img/HeroesGif/Hwm_combat.gif?url" alt="Blurred Image" />
     </div>
-    Remaining Try : {{ n }}
-    <div>
-      <label for="Try">Essai : </label>
-      <input type="Try" id="Try" v-model="Try" />
-    </div>
-    <button @click="submitTry" :disabled="n === 0">Send</button>
+    <label for="Try">Essai : </label>
+    <input type="Try" id="Try" v-model="Try" />
+    <button @click="submitTry">Send</button>
   </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { f } from 'vue-router/dist/router-CWoNjPRp.mjs'
 
-const n = ref(5)
 const zoom = ref(5)
+const blur = ref(2)
 const Try = ref('')
 
 const submitTry = async () => {
@@ -28,16 +26,16 @@ const submitTry = async () => {
 }
 
 function guess(Try: string) {
-  if (Try === 'Leper') {
-    alert('You win!')
-    showImage()
-  } else {
-    n.value -= 1
-    zoom.value -= 0.5
-    dezoom()
-    if (n.value === 0) {
-      alert('Game over! The correct answer was Leper.')
+  if (zoom.value > 1) {
+    console.log('Current zoom level:', zoom.value)
+    if (Try === 'Leper') {
+      alert('You win!')
       showImage()
+    } else {
+      zoom.value -= 0.2
+      blur.value -= 0.1
+      dezoom()
+      deblur()
     }
   }
 }
@@ -62,6 +60,12 @@ function dezoom() {
   if (!imgRef.value) return
 
   imgRef.value.style.transform = `scale(${zoom.value})`
+}
+
+function deblur() {
+  if (!imgRef.value) return
+
+  imgRef.value.style.filter = `blur(${blur.value}px)`
 }
 
 function showImage() {

@@ -14,7 +14,7 @@ import headerComponent from './components/header.vue'
     />
     <nav>
       <router-link to="/"> Home </router-link>
-      <router-link to="/users"> Users </router-link>
+      <router-link to="/users"> DarkestDle </router-link>
       <router-link to="/heroes"> Heroes </router-link>
     </nav>
     <nav class="LoRe">
