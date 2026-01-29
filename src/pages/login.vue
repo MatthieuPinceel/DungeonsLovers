@@ -29,13 +29,21 @@ const Password = ref('')
 
 const submitLogin = async () => {
   try {
-    await authStore.login(Username.value, Password.value)
+    const res = await axios.post('http://localhost:3000/authentification/login', {
+      Username: Username.value,
+      Password: Password.value,
+    })
+
+    const token = res.data.token
+    localStorage.setItem('token', token)
+
+    console.log('Connexion réussie')
+    router.push('/home')
   } catch (err) {
     console.error('Erreur lors de la connexion :', err)
   }
 }
 </script>
-
 
 <style scoped>
 h1 {
