@@ -11,10 +11,9 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { f } from 'vue-router/dist/router-CWoNjPRp.mjs'
 
-const zoom = ref(5)
 const blur = ref(2)
+const zoom = ref(5)
 const Try = ref('')
 
 const submitTry = async () => {
@@ -36,7 +35,6 @@ function guess(Try: string) {
       blur.value -= 0.1
       dezoom()
       deblur()
-    }
   }
 }
 
