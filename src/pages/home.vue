@@ -11,14 +11,14 @@
       </div>
 
       <div class="image-content">
-        <img src="/img/heroImages/Leper_combat.gif" alt="Combat GIF" />
+        <img src="/other/logo.png?url" alt="Combat GIF" />
       </div>
     </section>
 
     <section class="info-section">
       <h2>À propos du jeu</h2>
       <p>
-        Dungeons Lovers est un jeu où chaque décision compte. Construisez votre équipe de héros, 
+        Dungeons Lovers est un jeu où chaque décision compte. Construisez votre équipe de héros,
         améliorez leurs statistiques et explorez des donjons remplis de mystères et de dangers.
       </p>
     </section>
@@ -45,7 +45,7 @@
   border-radius: 12px;
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .text-content {
@@ -73,7 +73,9 @@
   font-weight: bold;
   border-radius: 8px;
   text-decoration: none;
-  transition: transform 0.2s, background 0.2s;
+  transition:
+    transform 0.2s,
+    background 0.2s;
 }
 
 .cta-btn:hover {

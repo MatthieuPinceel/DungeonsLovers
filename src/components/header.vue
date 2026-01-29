@@ -11,20 +11,14 @@ const isLoggedIn = computed(() => !!authStore.token)
 
 // Déconnexion et redirection
 const handleLogout = () => {
-  authStore.logout()          // supprime token & user
-  router.push('/login')       // redirige vers login
+  authStore.logout() // supprime token & user
+  router.push('/login') // redirige vers login
 }
 </script>
 
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="/img/other/logo.png"
-      height="120"
-      width="200"
-    />
+    <img alt="Vue logo" class="logo" src="/other/logo.png?url" height="120" width="200" />
     <animated-text text="Dungeons Lovers" />
 
     <nav>
@@ -44,8 +38,6 @@ const handleLogout = () => {
     </nav>
   </header>
 </template>
-
-
 
 <style scoped>
 header {

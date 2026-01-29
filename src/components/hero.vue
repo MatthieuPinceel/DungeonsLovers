@@ -18,7 +18,7 @@ watch(
       editForm.value = { ...props.hero }
     }
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 const save = () => {
@@ -26,24 +26,33 @@ const save = () => {
     store.saveHero(props.hero.HeroId, editForm.value)
   }
 }
-
 </script>
 
 <template>
   <div class="card">
     <div class="hero-image">
-      <img src="/img/other/logo.png" alt="">
+      <img src="/other/logo.png?url" alt="" />
     </div>
 
     <div class="card-content">
       <div v-if="store.editingHeroId !== hero.HeroId">
         <h2>{{ hero.Name }}</h2>
         <div class="stats">
-          <p>HP: <span>{{ hero.MaxHP }}</span></p>
-          <p>Dodge: <span>{{ hero.Dodge }}</span></p>
-          <p>Speed: <span>{{ hero.Speed }}</span></p>
-          <p>Crit: <span>{{ hero.CriticChance }}%</span></p>
-          <p>Damage: <span>{{ hero.Damage }}</span></p>
+          <p>
+            HP: <span>{{ hero.MaxHP }}</span>
+          </p>
+          <p>
+            Dodge: <span>{{ hero.Dodge }}</span>
+          </p>
+          <p>
+            Speed: <span>{{ hero.Speed }}</span>
+          </p>
+          <p>
+            Crit: <span>{{ hero.CriticChance }}%</span>
+          </p>
+          <p>
+            Damage: <span>{{ hero.Damage }}</span>
+          </p>
         </div>
         <button class="btn" @click="store.startEditing(hero)">Modify Hero</button>
       </div>
@@ -72,7 +81,7 @@ const save = () => {
   border-radius: 12px;
   overflow: hidden;
   border: 2px solid #5a3a1b;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   margin: 10px;
   display: flex;
   flex-direction: column;
